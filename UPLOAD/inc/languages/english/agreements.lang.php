@@ -4,7 +4,7 @@
  */
 $l = [
     'agreements' => 'Agreements',
-    'agreements_desc' => '[description]',
+    'agreements_desc' => 'Plugin for MyBB which allows forum admins to create agreements',
     'agreements_add_new' => 'New Agreement',
     'agreements_update' => 'Update Agreement',
     'agreements_view_users' => 'View Users',
