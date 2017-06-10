@@ -125,6 +125,13 @@ if($mybb->input['action'] === 'view_users' && $mybb->input['id'])
  */
 if($mybb->input['action'] === 'add')
 {
+    $page->extra_header .= <<<EOF
+    <link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+    <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1805"></script>
+    <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1808"></script>
+    <script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1805"></script>
+EOF;
+
     /**
      * Store the agreement
      */
@@ -183,7 +190,7 @@ if($mybb->input['action'] === 'add')
 
     $form_container = new FormContainer($lang->agreements_add_new);
     $form_container->output_row($lang->agreement_name . " <em>*</em>", "", $form->generate_text_box('agreement_name', $mybb->input['agreement_name'], array('id' => 'agreement_name')), 'agreement_name');
-    $form_container->output_row($lang->agreement_content . " <em>*</em>", $lang->agreement_content_desc, $form->generate_text_area('agreement_content', $mybb->input['agreement_content'], ['id' => 'agreement_content', 'rows' => 15]), 'agreement_content');
+    $form_container->output_row($lang->agreement_content . " <em>*</em>", $lang->agreement_content_desc, $form->generate_text_area('agreement_content', $mybb->input['agreement_content'], ['id' => 'agreement_content', 'rows' => 15]) . build_mycode_inserter("agreement_content"), 'agreement_content');
     $form_container->output_row($lang->agreement_forums, $lang->agreement_content_desc, $form->generate_forum_select('agreement_forums[]', -1, ['id' => 'agreement_forums', 'multiple' => true, 'size' => 5]), 'agreement_forums');
     $form_container->end();
 
@@ -200,6 +207,13 @@ if($mybb->input['action'] === 'add')
  */
 if($mybb->input['action'] === 'edit' && $mybb->input['id'])
 {
+    $page->extra_header .= <<<EOF
+    <link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+    <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1805"></script>
+    <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1808"></script>
+    <script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1805"></script>
+EOF;
+
     $query = $db->simple_select("agreements", "*", "id='".$mybb->get_input('id', MyBB::INPUT_INT)."'");
     $agreement = $db->fetch_array($query);
 
@@ -269,7 +283,7 @@ if($mybb->input['action'] === 'edit' && $mybb->input['id'])
 
     $form_container = new FormContainer($lang->agreements_update);
     $form_container->output_row($lang->agreement_name . " <em>*</em>", "", $form->generate_text_box('agreement_name', $agreement['name'], array('id' => 'agreement_name')), 'agreement_name');
-    $form_container->output_row($lang->agreement_content . " <em>*</em>", $lang->agreement_content_desc, $form->generate_text_area('agreement_content', $agreement['content'], ['id' => 'agreement_content', 'rows' => 15]), 'agreement_content');
+    $form_container->output_row($lang->agreement_content . " <em>*</em>", $lang->agreement_content_desc, $form->generate_text_area('agreement_content', $agreement['content'], ['id' => 'agreement_content', 'rows' => 15]) . build_mycode_inserter("agreement_content"), 'agreement_content');
     $form_container->output_row($lang->agreement_forums, $lang->agreement_content_desc, $form->generate_forum_select('agreement_forums[]', explode(",", $agreement['forums']), ['id' => 'agreement_forums', 'multiple' => true, 'size' => 5]), 'agreement_forums');
     $form_container->end();
 
