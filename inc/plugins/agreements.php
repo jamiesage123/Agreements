@@ -71,29 +71,35 @@ function agreements_install()
     }
 
     // Templates
-    $template  = '<html>';
-    $template .= '<head>';
-    $template .= '<title>{$mybb->settings[\'bbname\']} - {$agreement[\'name\']}</title>';
-    $template .= '{$headerinclude}';
-    $template .= '</head>';
-    $template .= '<body>';
-    $template .= '{$header}';
-    $template .= '<table border="0" cellspacing="0" cellpadding="5" class="tborder">';
-    $template .= '    <tbody>';
-    $template .= '        <tr>';
-    $template .= '            <td class="thead"><strong>{$agreement[\'name\']}</strong></td>';
-    $template .= '        </tr>';
-    $template .= '        <tr>';
-    $template .= '            <td>';
-    $template .= '              {$agreement[\'content\']}';
-    $template .= '              <div style="text-align: center;"><br><form action="agreement.php" method="post">{$agree_button}</form></div>';
-    $template .= '            </td>';
-    $template .= '        </tr>';
-    $template .= '    </tbody>';
-    $template .= '</table>';
-    $template .= '{$footer}';
-    $template .= '</body>';
-    $template .= '</html>';
+    $template = <<<'EOT'
+<html>
+<head>
+<title>{$mybb->settings['bbname']} - {$agreement['name']}</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table border="0" cellspacing="0" cellpadding="5" class="tborder">
+    <tbody>
+        <tr>
+            <td class="thead"><strong>{$agreement['name']}</strong></td>
+        </tr>
+        <tr>
+            <td>
+                {$agreement['content']}
+                <div style="text-align: center;">
+                    <br>
+                    <form action="agreement.php" method="post">
+                        {$agree_button}
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{$footer}
+</body>
+EOT;
 
     $insert_array = array(
         'title' => 'agreement_template',
