@@ -25,18 +25,23 @@ After pressing "Create", your agreement will be created and activated.
 Under the "Options" button, you have several different actions you can perform:
 
 **View Agreement**
+
 This will take you to the permanent agreement page which you can share with your users if you do not wish to enforce the agreement on any particular forum.
 
 **View Agreed Users**
+
 This will show you a list of all the users who have agreed to this agreement.
 
 **Clear Agreed Users**
+
 This will permanently delete all user agreement records, enforcing anyone who has already agreed to the agreement to view it again.
 
 **Edit Agreement**
+
 Edit the agreement.
 
 **Delete Agreement**
+
 Permanently delete the agreement and its associated user records.
 
 ## Credits
