@@ -12,11 +12,10 @@ $l = [
     'agreement_no_users' => 'No users have agreed to this agreement',
 
     'agreement_username' => 'Username',
-    'agreement_registered' => 'Registered',
     'agreement_last_active' => 'Last Active	',
     'agreement_email' => 'Email',
-    'agreement_ipaddress' => 'IP Address',
-    
+    'agreement_agreed_at' => 'Agreed at',
+
     'agreement_name' => 'Name',
     'agreement_content' => 'Content',
     'agreement_content_desc' => 'The content to be displayed to the user. This can include HTML.',

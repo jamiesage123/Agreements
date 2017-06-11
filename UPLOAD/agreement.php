@@ -35,6 +35,7 @@ if ($mybb->request_method == "post")
         $db->insert_query("user_agreements", [
             'user_id' => $mybb->user['uid'],
             'agreement_id' => $agreement['id'],
+            'created_at' => date('Y-m-d H:i:s')
         ]);
     }
 

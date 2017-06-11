@@ -66,6 +66,7 @@ function agreements_install()
             `id` INT NOT NULL AUTO_INCREMENT,
             `user_id` INT NOT NULL,
             `agreement_id` INT NOT NULL,
+            `created_at` DATETIME NULL,
             PRIMARY KEY (`id`));
         ");
     }

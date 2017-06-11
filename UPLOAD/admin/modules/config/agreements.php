@@ -66,40 +66,29 @@ if($mybb->input['action'] === 'view_users' && $mybb->input['id'])
 
     $table = new Table;
     $table->construct_header($lang->agreement_username, array('width' => '20%'));
-    $table->construct_header($lang->agreement_registered, array('width' => '15%', 'class' => 'align_center'));
     $table->construct_header($lang->agreement_last_active, array('width' => '15%', 'class' => 'align_center'));
     $table->construct_header($lang->agreement_email, array('width' => '15%', 'class' => 'align_center'));
-    $table->construct_header($lang->agreement_ipaddress, array('width' => '10%', 'class' => 'align_center'));
+    $table->construct_header($lang->agreement_agreed_at, array('width' => '15%', 'class' => 'align_center'));
 
     $query = $db->query("
-		SELECT u.uid, u.username, u.regdate, u.regip, u.lastactive, u.email, u.coppauser
+		SELECT u.uid, u.username, u.lastactive, u.email, u.coppauser, a.created_at
 		FROM ".TABLE_PREFIX."users u
 		JOIN ".TABLE_PREFIX."user_agreements a ON (a.user_id = u.uid)
 		WHERE a.agreement_id = {$agreement['id']}
-		ORDER BY u.regdate DESC
+		ORDER BY created_at DESC
 		LIMIT {$start}, {$per_page}
 	");
 
-    while($user = $db->fetch_array($query))
-    {
-        $trow = alt_trow();
+    while($user = $db->fetch_array($query)) {
         $user['username'] = htmlspecialchars_uni($user['username']);
         $user['profilelink'] = build_profile_link($user['username'], $user['uid'], "_blank");
         $user['email'] = htmlspecialchars_uni($user['email']);
-        $user['regdate'] = my_date('relative', $user['regdate']);
         $user['lastactive'] = my_date('relative', $user['lastactive']);
 
-        if(empty($user['regip'])) {
-            $user['regip'] = $lang->na;
-        } else {
-            $user['regip'] = my_inet_ntop($db->unescape_binary($user['regip']));
-        }
-
         $table->construct_cell($user['profilelink']);
-        $table->construct_cell($user['regdate'], array("class" => "align_center"));
         $table->construct_cell($user['lastactive'], array("class" => "align_center"));
         $table->construct_cell($user['email'], array("class" => "align_center"));
-        $table->construct_cell($user['regip'], array("class" => "align_center"));
+        $table->construct_cell($user['created_at'], array("class" => "align_center"));
         $table->construct_row();
     }
 
