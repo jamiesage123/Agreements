@@ -46,7 +46,7 @@ Permanently delete the agreement and its associated user records.
 
 ## Credits
 
-- MyBB - [https://mybb.com](https://mybb.com)
+- MyBB - [https://www.mybb.com](https://mybb.com)
 - Jamie Sage - [https://www.jamiesage.co.uk](https://www.jamiesage.co.uk)
 
 ## License
